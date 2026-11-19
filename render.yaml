@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: rag-talent-search
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: ES_HOST
+        value: https://my-elasticsearch-project-b3d414.es.us-central1.gcp.elastic.cloud:443
+      - key: ES_USERNAME
+        sync: false
+      - key: ES_PASSWORD
+        sync: false
+      - key: ES_API_KEY
+        sync: false
+      - key: CHROMA_DIR
+        value: /var/tmp/chroma
+      - key: ALPHA
+        value: "0.6"
+      - key: GOOGLE_API_KEY
+        sync: false  # Add manually in dashboard
+    # No startCommand for docker runtime; Dockerfile CMD is used
